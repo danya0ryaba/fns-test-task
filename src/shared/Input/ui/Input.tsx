@@ -26,6 +26,7 @@ export const Input: React.FC<InputProps> = ({
             <div className={`${style.wrapper__input} ${className}`}>
                 <label className={style.input__label} htmlFor={text}>{text}</label>
                 <input
+                    type={type}
                     id={text}
                     className={`${style.input} ${classError}`}
                     {...props}

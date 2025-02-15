@@ -1,47 +1,72 @@
+import { useState } from 'react';
+
 import style from './Select.module.scss'
 
-// import ArrowIcon from '../../../assets/arrow.svg'
-
-interface SelectProps extends React.HTMLAttributes<HTMLSelectElement> {
+interface CustomSelectProps {
     className?: string
-    text: string
-    messageError?: string;
+    text: string;
+    options: string[];
+    placeholder: string;
+    messageError?: string
 }
 
-export const Select: React.FC<SelectProps> = ({
+export const Select: React.FC<CustomSelectProps> = ({
+    options,
+    placeholder,
     className = '',
     text,
     messageError,
 }) => {
 
-    const classError = Boolean(messageError) ? style.input__error : '';
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedValue, setSelectedValue] = useState<string | null>(null);
+
+    const classError = Boolean(messageError) ? style.select__error : '';
+    const rotate = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+
+    const toggleSelect = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const handleOptionClick = (option: string) => {
+        setSelectedValue(option);
+        setIsOpen(false);
+    };
 
     return (
-        <div className={className}>
+        <div className={`${className} ${style.wrapper__select}`}>
 
-            <div className={style.wrapper__input}>
+            <label className={style.input__label} htmlFor={text}>{text}</label>
 
-                <label className={style.input__label} htmlFor={text}>Выберите фрукт:</label>
-
-                <select id={text} name="fruits" className={`${style.select} ${style.input} ${classError}`}>
-                    <option value="apple">Яблоко</option>
-                    <option value="banana">Банан</option>
-                    <option value="orange">Апельсин</option>
-                    <option value="grape">Виноград</option>
-                </select>
-
-                {/* <ArrowIcon /> */}
-
-
-
-                {messageError && (
-                    <span className={style.error}>ошибка</span>
-                )}
-
-                <span className={style.error}>ошибка</span>
-
+            <div className={`${style.select} ${isOpen && style.open} ${classError}`} onClick={toggleSelect}>
+                {selectedValue ? selectedValue : placeholder}
+                <svg
+                    className={style.select__arrow}
+                    style={{ transform: rotate }}
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.75 7.29138L9.75 12.7086L18.25 7.29138" stroke="#4C73E3" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round" />
+                </svg>
             </div>
 
+            {isOpen && (
+                <ul className={style.select__options}>
+                    {options.map(option => (
+                        <li
+                            key={option}
+                            className={style.select__option}
+                            onClick={() => handleOptionClick(option)}
+                        >
+                            {option}
+                        </li>
+                    ))}
+                </ul>
+            )}
+            {messageError && (
+                <span className={style.error}>ошибка</span>
+            )}
+            {/* <span className={style.error}>ошибка</span> */}
         </div>
-    )
-}
+    );
+};

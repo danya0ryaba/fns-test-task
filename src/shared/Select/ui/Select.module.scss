@@ -1,13 +1,78 @@
-@import '../../Input/ui/Input.module.scss';
+@use '../../../styles/variables/variables.scss' as *;
 
+.wrapper__select {
+    display: flex;
+    flex-direction: column;
+}
 
+.input__label {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16.94px;
+    margin-bottom: 8px;
+}
 
 .select {
     cursor: pointer;
-    appearance: none;
-    /* Убираем стандартный стиль */
-    -webkit-appearance: none;
-    /* Для Safari */
-    -moz-appearance: none;
-    /* Для Firefox */
+    max-width: 275px;
+    position: relative;
+    border: 1px solid $border;
+    border-radius: 16px;
+    padding: 12px 20px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19.36px;
+    color: $text-black;
+    margin-bottom: 4px;
+
+    &:hover {
+        box-shadow: rgba(53, 165, 0, 0.7) 0px 0px 3px 1px;
+    }
+
+    &__error {
+        border: 1px solid $red !important;
+    }
+}
+
+.open {
+    border: 2px solid $blue;
+
+    &:hover {
+        box-shadow: none;
+    }
+}
+
+.select__arrow {
+    transition: 0.2s ease;
+    position: absolute;
+    right: 20px;
+    bottom: 12px;
+}
+
+.select__options {
+    display: flex;
+    flex-direction: column;
+    max-width: 275px;
+}
+
+.select__option {
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19.2px;
+    padding: 8px 20px;
+    border-bottom: 1px solid $border;
+    color: $text-black;
+    transition: 0.2s ease;
+
+    &:hover {
+        background-color: $light-green;
+    }
+
+}
+
+.error {
+    color: $red;
+    font-size: 12px;
+    line-height: 14.52px;
 }
