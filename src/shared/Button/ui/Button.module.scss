@@ -1,0 +1,33 @@
+@use '../../../styles/variables/variables.scss' as *;
+
+.Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 26px;
+    padding: 10px;
+    font-size: 15px;
+    padding: 16px 0;
+    max-width: 250px;
+    width: 100%;
+}
+
+.primary {
+    background-color: $blue;
+    color: $text-white;
+    font-weight: 800;
+
+    &:hover {
+        background-color: $light-blue;
+    }
+}
+
+.secondary {
+    background-color: $text-white;
+    color: $blue;
+    outline: 1px solid $blue;
+
+    &:hover {
+        color: $light-blue;
+    }
+}

@@ -4,6 +4,8 @@ import { Error } from './pages/Error'
 import { Home } from './pages/Home'
 import { Create } from './pages/Create'
 
+import './styles/global.scss'
+
 function App() {
 
   return <>

@@ -1,0 +1,1 @@
+export { InputArea } from './ui/InputArea'

@@ -1,0 +1,55 @@
+@use '../../../styles/variables/variables.scss' as *;
+
+.wrapper__input {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    transition: 0.2s ease;
+
+    &:hover {
+        .input {
+            box-shadow: rgba(53, 165, 0, 0.7) 0px 0px 3px 1px;
+        }
+    }
+
+    .input:focus {
+        box-shadow: none;
+    }
+}
+
+.input__label {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16.94px;
+    margin-bottom: 8px;
+}
+
+.input {
+    border: 1px solid $border;
+    border-radius: 16px;
+    padding: 12px 20px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19.36px;
+    color: $text-black;
+    margin-bottom: 4px;
+
+    &::placeholder {
+        color: $text-gray;
+    }
+
+    &:focus {
+        border: 2px solid $blue;
+    }
+
+    &__error {
+        border: 1px solid $red !important;
+    }
+
+}
+
+.error {
+    color: $red;
+    font-size: 12px;
+    line-height: 14.52px;
+}

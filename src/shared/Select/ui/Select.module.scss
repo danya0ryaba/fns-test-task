@@ -1,0 +1,13 @@
+@import '../../Input/ui/Input.module.scss';
+
+
+
+.select {
+    cursor: pointer;
+    appearance: none;
+    /* Убираем стандартный стиль */
+    -webkit-appearance: none;
+    /* Для Safari */
+    -moz-appearance: none;
+    /* Для Firefox */
+}
