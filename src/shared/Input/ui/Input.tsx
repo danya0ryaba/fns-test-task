@@ -5,7 +5,7 @@ import style from './Input.module.scss'
 export interface InputProps
     extends React.InputHTMLAttributes<HTMLInputElement> {
     className?: string;
-    text: string;
+    text?: string;
     messageError?: string;
     onSend?: () => void;
     required?: boolean
@@ -13,7 +13,7 @@ export interface InputProps
 
 export const Input: React.FC<InputProps> = ({
     type = 'text',
-    text,
+    text = '',
     className,
     messageError,
     onSend,

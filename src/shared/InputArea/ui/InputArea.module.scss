@@ -1,5 +1,11 @@
 @use '../../Input/ui/Input.module.scss';
 
+.wrapper__input {
+    max-width: 1180px;
+    width: 100%;
+}
+
 .textarea {
+    height: 100px;
     resize: none;
 }

@@ -1,0 +1,43 @@
+@use '../../../styles/variables/variables.scss' as *;
+
+.radio__label {
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19.36px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        .radio {
+            box-shadow: rgba(53, 165, 0, 0.7) 0px 0px 3px 1px;
+        }
+    }
+}
+
+.radio {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 1px solid $blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $text-white;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-right: 8px;
+
+    &:hover {
+        box-shadow: rgba(53, 165, 0, 0.7) 0px 0px 3px 1px;
+    }
+}
+
+.active {
+    background-color: $blue;
+
+    &:hover {
+        box-shadow: none;
+    }
+}
