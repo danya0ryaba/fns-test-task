@@ -1,0 +1,78 @@
+@use '../../../styles/variables/variables.scss' as *;
+
+.card {
+    padding: 16px 28px;
+    border-radius: 16px;
+    background-color: $text-white;
+    color: $text-black;
+    display: flex;
+    flex-direction: column;
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 28px;
+
+        .title {
+            font-size: 14px;
+            line-height: 16.8px;
+            opacity: 0.6;
+        }
+
+        .edit {
+            cursor: pointer;
+        }
+    }
+
+    .subtitle {
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 30px;
+        margin-bottom: 12px;
+    }
+
+    .info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__map {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            span {
+                font-size: 16px;
+                line-height: 19.2px;
+            }
+
+        }
+
+        &__date {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            .date__item {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                font-size: 14px;
+                line-height: 16.8px;
+
+                .text_bold {
+                    color: $blue;
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 24px;
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

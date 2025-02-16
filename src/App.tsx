@@ -6,6 +6,7 @@ import { Create } from './pages/Create'
 
 import './styles/global.scss'
 import { Header } from './components/Header'
+import { Edit } from './pages/Edit'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/' element={<Home />} />
 
         <Route path='create' element={<Create />} />
+        <Route path='edit/:id' element={<Edit />} />
 
         <Route path='*' element={<Error />} />
 
