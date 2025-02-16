@@ -24,6 +24,10 @@
     margin-bottom: 8px;
 }
 
+.required {
+    color: $red;
+}
+
 .input {
     border: 1px solid $border;
     border-radius: 16px;

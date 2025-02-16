@@ -8,6 +8,7 @@ export interface InputProps
     text: string;
     messageError?: string;
     onSend?: () => void;
+    required?: boolean
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -16,6 +17,7 @@ export const Input: React.FC<InputProps> = ({
     className,
     messageError,
     onSend,
+    required = false,
     ...props
 }) => {
 
@@ -24,7 +26,7 @@ export const Input: React.FC<InputProps> = ({
     return (
         <div>
             <div className={`${style.wrapper__input} ${className}`}>
-                <label className={style.input__label} htmlFor={text}>{text}</label>
+                <label className={style.input__label} htmlFor={text}>{text} {required && <span className={style.required}>*</span>}</label>
                 <input
                     type={type}
                     id={text}

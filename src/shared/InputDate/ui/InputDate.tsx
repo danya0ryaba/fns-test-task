@@ -1,45 +1,61 @@
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+//import './CustomDateInput.css'; // Подключите свой CSS файл для стилей
+import style from './InputDate.module.scss'
 
-export const InputDate: React.FC = () => {
-    const [currentDate, setCurrentDate] = useState(new Date());
+interface CustomDateInputProps {
+    selectedDate: Date | null;
+    onDateChange: (date: Date | null) => void;
+}
 
-    const daysInMonth = (month: number, year: number) => new Date(year, month + 1, 0).getDate();
-    const firstDayOfMonth = (month: number, year: number) => new Date(year, month, 1).getDay();
+export const InputDate: React.FC<CustomDateInputProps> = ({ selectedDate, onDateChange }) => {
+    const [isOpen, setIsOpen] = useState(false);
 
-    const renderDays = () => {
-        const month = currentDate.getMonth();
-        const year = currentDate.getFullYear();
-        const days = [];
-        const totalDays = daysInMonth(month, year);
-        const firstDay = firstDayOfMonth(month, year);
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+    };
 
-        for (let i = 0; i < firstDay; i++) {
-            days.push(<div key={`empty-${i}`} className="empty-day"></div>);
-        }
-
-        for (let i = 1; i <= totalDays; i++) {
-            days.push(
-                <div key={i} className="day" onClick={() => console.log(`Выбрана дата: ${i}/${month + 1}/${year}`)}>
-                    {i}
-                </div>
-            );
-        }
-
-        return days;
+    const handleClose = () => {
+        setIsOpen(false);
     };
 
     return (
-        <div className="calendar">
-            <div className="header">
-                <button onClick={() => setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)))}>
-                    Предыдущий месяц
-                </button>
-                <span>{currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-                <button onClick={() => setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)))}>
-                    Следующий месяц
-                </button>
-            </div>
-            <div className="days-grid">{renderDays()}</div>
+        <div className="custom-date-input">
+            <input
+                type="text"
+                value={selectedDate ? selectedDate.toLocaleDateString() : ''}
+                onClick={handleToggle}
+                readOnly
+                placeholder="Выберите дату"
+            />
+            {isOpen && (
+                <div className="calendar-container">
+                    <DatePicker
+                        selected={selectedDate}
+                        onChange={(date) => {
+                            onDateChange(date);
+                            handleClose();
+                        }}
+                        onClickOutside={handleClose}
+                        inline
+                    />
+                </div>
+            )}
         </div>
     );
 };
+
+// const App: React.FC = () => {
+//     const [date, setDate] = useState<Date | null>(null);
+
+//     return (
+//         <div>
+//             <h1>Кастомный инпут с календарем</h1>
+//             <CustomDateInput selectedDate={date} onDateChange={setDate} />
+//             <p>Выбранная дата: {date?.toLocaleDateString()}</p>
+//         </div>
+//     );
+// };
+
+// export default App;

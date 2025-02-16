@@ -1,0 +1,40 @@
+@use '../../../styles/variables/variables.scss' as *;
+
+.header {
+    height: 71px;
+    background-color: $blue;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1300px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+        cursor: pointer;
+        width: 31px;
+        height: 31px;
+        background-color: $text-white;
+        border-radius: 100%;
+    }
+}
+
+.nav {
+    display: flex;
+
+    .link {
+        padding: 23px 20px;
+        text-decoration: none;
+        color: $text-white;
+        font-size: 18px;
+        line-height: 24.51px;
+
+        &_active {
+            background-color: $light-blue;
+        }
+    }
+}

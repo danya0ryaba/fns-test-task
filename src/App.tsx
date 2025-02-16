@@ -5,19 +5,24 @@ import { Home } from './pages/Home'
 import { Create } from './pages/Create'
 
 import './styles/global.scss'
+import { Header } from './components/Header'
 
 function App() {
 
   return <>
-    <Routes>
+    <Header />
+    <main className='container'>
 
-      <Route path='/' element={<Home />} />
+      <Routes>
 
-      <Route path='create' element={<Create />} />
+        <Route path='/' element={<Home />} />
 
-      <Route path='*' element={<Error />} />
+        <Route path='create' element={<Create />} />
 
-    </Routes>
+        <Route path='*' element={<Error />} />
+
+      </Routes>
+    </main>
   </>
 }
 

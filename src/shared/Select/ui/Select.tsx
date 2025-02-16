@@ -8,6 +8,7 @@ interface CustomSelectProps {
     options: string[];
     placeholder: string;
     messageError?: string
+    required?: boolean
 }
 
 export const Select: React.FC<CustomSelectProps> = ({
@@ -15,6 +16,7 @@ export const Select: React.FC<CustomSelectProps> = ({
     placeholder,
     className = '',
     text,
+    required = false,
     messageError,
 }) => {
 
@@ -36,7 +38,7 @@ export const Select: React.FC<CustomSelectProps> = ({
     return (
         <div className={`${className} ${style.wrapper__select}`}>
 
-            <label className={style.input__label} htmlFor={text}>{text}</label>
+            <label className={style.input__label} htmlFor={text}>{text} {required && <span className={style.required}>*</span>}</label>
 
             <div className={`${style.select} ${isOpen && style.open} ${classError}`} onClick={toggleSelect}>
                 {selectedValue ? selectedValue : placeholder}
