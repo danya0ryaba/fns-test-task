@@ -9,6 +9,7 @@ interface CustomSelectProps {
     placeholder: string;
     messageError?: string
     required?: boolean
+    name?: string
 }
 
 export const Select: React.FC<CustomSelectProps> = ({
@@ -18,6 +19,7 @@ export const Select: React.FC<CustomSelectProps> = ({
     text,
     required = false,
     messageError,
+    name,
 }) => {
 
     const [isOpen, setIsOpen] = useState(false);
