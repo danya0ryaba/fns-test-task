@@ -1,15 +1,14 @@
-import { useState } from 'react'
-import { RadioButton } from '../../Radiobutton'
-
-import style from './RadioGroup.module.scss'
+import { useField } from 'formik';
+import { RadioButton } from '../../Radiobutton';
+import style from './RadioGroup.module.scss';
 
 interface RadioGroupProps {
-    className?: string
-    label: string
-    name: string
-    options: string[]
-    required?: boolean
-    row?: boolean
+    className?: string;
+    label: string;
+    name: string;
+    options: string[];
+    required?: boolean;
+    row?: boolean;
 }
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
@@ -20,27 +19,29 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     required,
     row = false,
 }) => {
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [field, meta, helpers] = useField(name);
 
     const handleOptionChange = (value: string) => {
-        setSelectedOption(value);
+        helpers.setValue(value);
     };
+
     return (
-        <div className={className}>
-
+        <div className={`${className} ${style.wrapper}`}>
             <h5 className={style.label}>{label} {required && <span className={style.required}>*</span>}</h5>
-
             <div className={`${style.options} ${row && style.row}`}>
                 {options.map((option) => (
                     <RadioButton
                         key={option}
                         label={option}
                         name={name}
-                        isChecked={selectedOption === option}
-                        onChangeCustom={() => handleOptionChange(option)}
+                        isChecked={field.value === option} // Проверяем, выбрана ли опция
+                        onChangeCustom={() => handleOptionChange(option)} // Обработчик изменения
                     />
                 ))}
             </div>
+            {meta.touched && meta.error ? (
+                <span className={style.error}>{meta.error}</span> // Показываем ошибку, если есть
+            ) : null}
         </div>
-    )
-}
+    );
+};
