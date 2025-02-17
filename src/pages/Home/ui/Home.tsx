@@ -1,10 +1,8 @@
-
 import { Card } from "../../../components/Card"
 import { Title } from "../../../components/Title"
-
+import { useGetCardsQuery } from "../../../store/api/cardsApi";
 
 import style from './Home.module.scss'
-import { useGetCardsQuery } from ".."
 
 export const Home = () => {
 

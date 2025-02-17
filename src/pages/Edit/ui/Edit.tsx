@@ -1,11 +1,10 @@
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { Title } from "../../../components/Title"
 import { Form } from "../../../components/Form";
+import { useGetCardIdQuery, useUpdateCardMutation } from "../../../store/api/cardsApi";
+import { CardRequestTypeWithoutId } from "../../../types/types";
 
 import style from '../../Create/ui/Create.module.scss'
-
-import { useGetCardIdQuery } from "../../Home";
-import { useUpdateCardMutation } from "../../Home/model/services/cardsApi";
 
 export const Edit = () => {
 
@@ -13,17 +12,14 @@ export const Edit = () => {
     const router = useNavigate();
 
     const { data, isLoading, isError } = useGetCardIdQuery(id || '')
-
     const [updateCard, { isError: isErrorUpdateCard }] = useUpdateCardMutation();
 
-    const onSubmit = async (body: any) => {
+    const onSubmit = async (body: CardRequestTypeWithoutId) => {
         try {
-            const response = await updateCard({ id: id || '', body });
-            console.log(response);
+            await updateCard({ id: id || '', body });
             alert('Заявка отредактирована');
             router('/');
         } catch (e) {
-            console.log("маслину словил");
             console.log(isErrorUpdateCard);
         }
     }

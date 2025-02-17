@@ -1,0 +1,1 @@
+export const API_BASE_URL = { baseUrl: 'https://67b31a62bc0165def8cfe8f0.mockapi.io/api/v1/' }; // в env не стал выносить

@@ -29,7 +29,6 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
     }, [isChecked]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e)
         const newChecked = e.target.checked;
         setChecked(prev => !prev);
         if (onChangeCustom) {

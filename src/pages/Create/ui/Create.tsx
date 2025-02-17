@@ -1,19 +1,18 @@
 import { Link, useNavigate } from "react-router-dom"
-
 import { Title } from "../../../components/Title"
 import { Form } from "../../../components/Form"
+import { initialValues } from "../../../constants/shemaForm"
+import { CardRequestTypeWithoutId } from "../../../types/types"
+import { useCreateCardMutation } from "../../../store/api/cardsApi"
 
 import style from './Create.module.scss'
-import { initialValues } from "../../../constants/shemaForm"
-import { useCreateCardMutation } from "../../Home/model/services/cardsApi"
 
 export const Create = () => {
 
     const router = useNavigate();
-
     const [createCard, { isLoading, isError }] = useCreateCardMutation();
 
-    const onSubmit = async (values: any) => {
+    const onSubmit = async (values: CardRequestTypeWithoutId) => {
         try {
             await createCard(values);
             alert('Заявка создана');

@@ -1,20 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { CardRequestType } from '../../../../types/types';
-
+import { API_BASE_URL } from '../../constants/URL';
+import { CardRequestType, CardRequestTypeWithoutId } from '../../types/types';
 
 export const cardsApi = createApi({
     reducerPath: 'cardsApi',
     tagTypes: ['Card'],
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://67b31a62bc0165def8cfe8f0.mockapi.io/api/v1/' }),
+    baseQuery: fetchBaseQuery(API_BASE_URL),
     endpoints: (builder) => ({
         getCards: builder.query<CardRequestType[], void>({
             query: () => '/items',
-
             providesTags: (result) =>
                 result ?
                     [
-                        ...result.map(({ id }) => ({ type: 'Card', id } as const)), // Теги для каждого элемента
-                        { type: 'Card', id: 'LIST' }, // Тег для списка
+                        ...result.map(({ id }) => ({ type: 'Card', id } as const)),
+                        { type: 'Card', id: 'LIST' },
                     ]
                     : [{ type: 'Card', id: 'LIST' }],
 
@@ -23,7 +22,7 @@ export const cardsApi = createApi({
             query: (id) => `/items/${id}`,
             providesTags: (result, error, id) => [{ type: 'Card', id }],
         }),
-        createCard: builder.mutation<any, any>({
+        createCard: builder.mutation<CardRequestType, CardRequestTypeWithoutId>({
             query: body => ({
                 url: '/items',
                 method: 'POST',
@@ -31,7 +30,7 @@ export const cardsApi = createApi({
             }),
             invalidatesTags: [{ type: 'Card', id: 'LIST' }],
         }),
-        updateCard: builder.mutation<any, { id: string; body: any }>({
+        updateCard: builder.mutation<CardRequestType, { id: string; body: CardRequestTypeWithoutId }>({
             query: ({ id, body }) => ({
                 url: `/items/${id}`,
                 method: 'PUT',
