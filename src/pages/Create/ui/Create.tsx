@@ -4,8 +4,8 @@ import { Title } from "../../../components/Title"
 import { Form } from "../../../components/Form"
 
 import style from './Create.module.scss'
-import { useCreateCardMutation } from "../model/services/createCardApi"
 import { initialValues } from "../../../constants/shemaForm"
+import { useCreateCardMutation } from "../../Home/model/services/cardsApi"
 
 export const Create = () => {
 

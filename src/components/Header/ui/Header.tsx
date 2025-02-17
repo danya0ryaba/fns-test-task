@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
+
 import style from './Header.module.scss'
 
 export const Header = () => {
@@ -10,18 +11,22 @@ export const Header = () => {
 
                 <nav className={style.nav}>
 
+                    <ul>
+
+                    </ul>
+
                     <NavLink
                         className={({ isActive }) => `${style.link} ${isActive && style.link_active}`}
                         to="/"
                     >
-                        Все заявки
+                        <span>Все заявки</span>
                     </NavLink>
 
                     <NavLink
                         className={({ isActive }) => `${style.link} ${isActive && style.link_active}`}
                         to="/create"
                     >
-                        Создание заявки
+                        <span>Создание заявки</span>
                     </NavLink>
 
                 </nav>

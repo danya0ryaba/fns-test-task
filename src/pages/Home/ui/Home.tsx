@@ -1,22 +1,14 @@
-// import { useDispatch } from "react-redux"
+
 import { Card } from "../../../components/Card"
 import { Title } from "../../../components/Title"
 
-// import { useEffect } from "react"
 
 import style from './Home.module.scss'
-import { setCards, useGetCardsQuery } from ".."
+import { useGetCardsQuery } from ".."
 
 export const Home = () => {
 
-    // const dispatch = useDispatch();
     const { data, error, isLoading } = useGetCardsQuery();
-
-    // useEffect(() => {
-    //     if (data) {
-    //         dispatch(setCards(data));
-    //     }
-    // }, [data, dispatch]);
 
     if (isLoading) return <p>Загрузка...</p>;
     if (error) return <p>Ошибка!</p>;

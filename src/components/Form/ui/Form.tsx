@@ -8,8 +8,9 @@ import { RadioGroup } from '../../../shared/RadioGroup'
 import { Select } from '../../../shared/Select'
 import { education, salary, schedule, sex, type, userSchema } from '../../../constants/shemaForm'
 
+import { CardRequestTypeWithoutId } from '../../../types/types'
+
 import style from './Form.module.scss'
-import { CardRequestTypeWithoutId } from '../../../pages/Create/model/types/createCardType'
 
 type FormType = {
     onSubmitForm?: (value: any) => void
@@ -29,7 +30,7 @@ export const Form: React.FC<FormType> = ({
     const onSubmit = async (values: typeof initialValues) => {
         onSubmitForm && onSubmitForm(values)
     }
-    console.log(initialValues.post)
+
     return (
         <>
             <Formik
@@ -47,13 +48,32 @@ export const Form: React.FC<FormType> = ({
                                 <Input text="Отдел" required name='department' messageError={errors.department && touched.department} />
                             </div>
                             <div className={style.row}>
-                                <Input type='date' text="Дата открытия" required placeholder="Placeholder" name='date_open' messageError={errors.date_open && touched.date_open} />
-                                <Input type='date' text="Плановая дата закрытия" required placeholder="Placeholder" name='date_close' messageError={errors.date_close && touched.date_close} />
+                                <Input
+                                    type='date'
+                                    text="Дата открытия"
+                                    required
+                                    placeholder="Placeholder"
+                                    name='date_open'
+                                    messageError={errors.date_open && touched.date_open}
+                                />
+                                <Input
+                                    type='date'
+                                    text="Плановая дата закрытия"
+                                    required
+                                    placeholder="Placeholder"
+                                    name='date_close'
+                                    messageError={errors.date_close && touched.date_close}
+                                />
                             </div>
                             <div className={style.row}>
-
                                 <div className={style.checkboxs}>
-                                    <RadioGroup label="Пол" name="sex" options={sex} required value={initialValues.sex} />
+                                    <RadioGroup
+                                        label="Пол"
+                                        name="sex"
+                                        options={sex}
+                                        required
+                                        value={initialValues.sex}
+                                    />
                                 </div>
                                 <Select
                                     value={initialValues.education}
@@ -63,7 +83,6 @@ export const Form: React.FC<FormType> = ({
                                     required
                                     name='education'
                                 />
-
                             </div>
                         </section>
 

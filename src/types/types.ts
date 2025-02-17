@@ -18,7 +18,7 @@ export type CardRequestType = {
     type: string,
     responsibilities: string,
     skills: string,
-    advantages: string,
+    advantages: string
 }
 
-export type CardRequestTypeWithoutId = Omit<CardRequestType, 'id'>;
+export type CardRequestTypeWithoutId = Omit<CardRequestType, 'id'>

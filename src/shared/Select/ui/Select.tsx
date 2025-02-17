@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useField } from 'formik';
 
 import style from './Select.module.scss';
@@ -24,6 +24,7 @@ export const Select: React.FC<CustomSelectProps> = ({
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string | null>(value || null);
+    const selectRef = useRef<HTMLDivElement | null>(null);
 
     const [field, meta, helpers] = useField(name);
 
@@ -40,8 +41,21 @@ export const Select: React.FC<CustomSelectProps> = ({
         setIsOpen(false);
     };
 
+    const handleClickOutside = (event: MouseEvent) => {
+        if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
-        <div className={`${className} ${style.wrapper__select}`}>
+        <div className={`${className} ${style.wrapper__select}`} ref={selectRef}>
 
             <label className={style.input__label} htmlFor={text}>{text} {required && <span className={style.required}>*</span>}</label>
 
@@ -71,7 +85,7 @@ export const Select: React.FC<CustomSelectProps> = ({
                 </ul>
             )}
             {meta.touched && meta.error && (
-                <span className={style.error}>{meta.error}</span> // Показываем ошибку, если есть
+                <span className={style.error}>{meta.error}</span>
             )}
         </div>
     );

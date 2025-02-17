@@ -1,10 +1,16 @@
 @use '../../../styles/variables/variables.scss' as *;
 
 .wrapper__input {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: start;
     transition: 0.2s ease;
+    width: 275px;
+
+    @media (max-width:$tablet) {
+        width: 100%;
+    }
 
     &:hover {
         .input {
@@ -29,6 +35,8 @@
 }
 
 .input {
+    appearance: none;
+    -webkit-appearance: none;
     border: 1px solid $border;
     border-radius: 16px;
     padding: 12px 20px;
@@ -43,7 +51,20 @@
     }
 
     &:focus {
-        border: 2px solid $blue;
+        border: 1px solid $blue;
+        outline: 2px solid $blue;
+        outline-offset: -2px;
+    }
+
+    &__date {
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        background: url('../../../assets/icons/calendar.jpg') no-repeat right 20px center;
+
+        &::-webkit-calendar-picker-indicator {
+            display: none;
+        }
     }
 
     &__error {
@@ -53,6 +74,9 @@
 }
 
 .error {
+    position: absolute;
+    bottom: -14px;
+    left: 0;
     color: $red;
     font-size: 12px;
     line-height: 14.52px;

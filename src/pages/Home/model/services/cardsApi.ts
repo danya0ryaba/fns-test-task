@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { CardRequestType } from '../../../Create'
+import { CardRequestType } from '../../../../types/types';
+
 
 export const cardsApi = createApi({
     reducerPath: 'cardsApi',
@@ -18,12 +19,10 @@ export const cardsApi = createApi({
                     : [{ type: 'Card', id: 'LIST' }],
 
         }),
-
         getCardId: builder.query<CardRequestType, string>({
             query: (id) => `/items/${id}`,
             providesTags: (result, error, id) => [{ type: 'Card', id }],
         }),
-
         createCard: builder.mutation<any, any>({
             query: body => ({
                 url: '/items',
@@ -32,7 +31,6 @@ export const cardsApi = createApi({
             }),
             invalidatesTags: [{ type: 'Card', id: 'LIST' }],
         }),
-
         updateCard: builder.mutation<any, { id: string; body: any }>({
             query: ({ id, body }) => ({
                 url: `/items/${id}`,
@@ -42,8 +40,7 @@ export const cardsApi = createApi({
                 }
             }),
             invalidatesTags: (result, error, { id }) => [{ type: 'Card', id }],
-        }),
-
+        })
     }),
 })
 

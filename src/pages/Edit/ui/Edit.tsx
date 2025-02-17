@@ -5,9 +5,7 @@ import { Form } from "../../../components/Form";
 import style from '../../Create/ui/Create.module.scss'
 
 import { useGetCardIdQuery } from "../../Home";
-import { useUpdateCardMutation } from "../model/services/cardUpdateApi";
-
-
+import { useUpdateCardMutation } from "../../Home/model/services/cardsApi";
 
 export const Edit = () => {
 
