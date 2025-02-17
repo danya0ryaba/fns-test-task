@@ -6,3 +6,17 @@
     line-height: 43.2px;
     margin: 48px 0 56px;
 }
+
+@media (max-width:$tablet) {
+    .title {
+        font-size: 26px;
+        margin: 32px 0 40px;
+
+    }
+}
+
+@media (max-width:$mobile) {
+    .title {
+        line-height: 20px;
+    }
+}

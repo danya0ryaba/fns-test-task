@@ -1,4 +1,4 @@
-import { array, date, number, object, string } from "yup";
+import { date, number, object, string } from "yup";
 
 export const userSchema = object({
     post: string(),
@@ -10,7 +10,7 @@ export const userSchema = object({
     sex: string().required('Выберите пол'),
     education: string().required('Укажите образование'),
 
-    salary: array(),
+    salary: string(),
     from: number(),
     to: number(),
     region: string().required('Укажите регион'),
