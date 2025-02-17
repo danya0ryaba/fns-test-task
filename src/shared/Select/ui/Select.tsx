@@ -26,7 +26,7 @@ export const Select: React.FC<CustomSelectProps> = ({
     const [selectedValue, setSelectedValue] = useState<string | null>(value || null);
     const selectRef = useRef<HTMLDivElement | null>(null);
 
-    const [field, meta, helpers] = useField(name);
+    const [_, meta, helpers] = useField(name);
 
     const classError = Boolean(meta.touched && meta.error) ? style.select__error : '';
     const rotate = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
@@ -56,9 +56,7 @@ export const Select: React.FC<CustomSelectProps> = ({
 
     return (
         <div className={`${className} ${style.wrapper__select}`} ref={selectRef}>
-
             <label className={style.input__label} htmlFor={text}>{text} {required && <span className={style.required}>*</span>}</label>
-
             <div className={`${style.select} ${isOpen && style.open} ${classError}`} onClick={toggleSelect}>
                 {selectedValue || placeholder}
                 <svg
@@ -70,7 +68,6 @@ export const Select: React.FC<CustomSelectProps> = ({
                     <path d="M1.75 7.29138L9.75 12.7086L18.25 7.29138" stroke="#4C73E3" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round" />
                 </svg>
             </div>
-
             {isOpen && (
                 <ul className={style.select__options}>
                     {options.map(option => (

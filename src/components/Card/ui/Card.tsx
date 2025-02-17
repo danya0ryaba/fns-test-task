@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { CardType } from '../../../pages/Home/model/types/cardsType'
+import { CardRequestType } from '../../../types/types'
 
 import style from './Card.module.scss'
 
-export const Card: React.FC<CardType> = ({
+export const Card: React.FC<CardRequestType> = ({
     id,
     post,
     date_open,
@@ -12,13 +12,11 @@ export const Card: React.FC<CardType> = ({
     address,
     metro,
     experience,
-    ...otherProps
 }) => {
     return (
         <div className={style.card}>
-
             <div className={style.card__content}>
-                <h3 className={style.title}>Дата публикации: {date_open}</h3>
+                <h3 className={style.title}>Дата публикации: {String(date_open)}</h3>
                 <Link to={`/edit/${id}`}>
                     <svg className={style.edit} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 21H22" stroke="#4C73E3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -26,9 +24,7 @@ export const Card: React.FC<CardType> = ({
                     </svg>
                 </Link>
             </div>
-
             <h5 className={style.subtitle}>{post}</h5>
-
             <div className={style.info}>
                 <div className={style.info__map}>
                     <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +32,6 @@ export const Card: React.FC<CardType> = ({
                     </svg>
                     <span>{region + ', ' + address}</span>
                 </div>
-
                 <div className={style.info__date}>
                     <span className={style.date__item}><b className={style.text_bold}>от {from}</b>на руки</span>
                     <span className={style.date__item}>Требуемый опыт: <b className={style.text_bold}>{experience}</b></span>
@@ -48,7 +43,6 @@ export const Card: React.FC<CardType> = ({
                     </span>
                 </div>
             </div>
-
         </div>
     )
 }

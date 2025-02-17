@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { CardType } from '../types/cardsType'
+import { CardRequestType } from '../../types/types'
 
 export interface CardsState {
-    cards: CardType[]
+    cards: CardRequestType[]
 }
 
 const initialState: CardsState = {
@@ -14,7 +14,7 @@ export const cardsSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
-        setCards: (state, action: PayloadAction<CardType[]>) => {
+        setCards: (state, action: PayloadAction<CardRequestType[]>) => {
             state.cards = action.payload
         }
     },

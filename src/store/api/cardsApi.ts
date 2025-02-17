@@ -20,7 +20,7 @@ export const cardsApi = createApi({
         }),
         getCardId: builder.query<CardRequestType, string>({
             query: (id) => `/items/${id}`,
-            providesTags: (result, error, id) => [{ type: 'Card', id }],
+            providesTags: (_, __, id) => [{ type: 'Card', id }],
         }),
         createCard: builder.mutation<CardRequestType, CardRequestTypeWithoutId>({
             query: body => ({
@@ -38,7 +38,7 @@ export const cardsApi = createApi({
                     ...body
                 }
             }),
-            invalidatesTags: (result, error, { id }) => [{ type: 'Card', id }],
+            invalidatesTags: (_, __, { id }) => [{ type: 'Card', id }],
         })
     }),
 })
