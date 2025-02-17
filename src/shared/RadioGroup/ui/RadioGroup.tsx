@@ -9,6 +9,7 @@ interface RadioGroupProps {
     options: string[];
     required?: boolean;
     row?: boolean;
+    value?: string;
 }
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
@@ -18,6 +19,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     options,
     required,
     row = false,
+    value = '',
 }) => {
     const [field, meta, helpers] = useField(name);
 
@@ -31,16 +33,17 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
             <div className={`${style.options} ${row && style.row}`}>
                 {options.map((option) => (
                     <RadioButton
+                        value={value}
                         key={option}
                         label={option}
                         name={name}
-                        isChecked={field.value === option} // Проверяем, выбрана ли опция
-                        onChangeCustom={() => handleOptionChange(option)} // Обработчик изменения
+                        isChecked={field.value === option}
+                        onChangeCustom={() => handleOptionChange(option)}
                     />
                 ))}
             </div>
             {meta.touched && meta.error ? (
-                <span className={style.error}>{meta.error}</span> // Показываем ошибку, если есть
+                <span className={style.error}>{meta.error}</span>
             ) : null}
         </div>
     );

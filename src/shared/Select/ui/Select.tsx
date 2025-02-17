@@ -10,6 +10,7 @@ interface CustomSelectProps {
     placeholder: string;
     required?: boolean;
     name?: string;
+    value?: string;
 }
 
 export const Select: React.FC<CustomSelectProps> = ({
@@ -19,9 +20,10 @@ export const Select: React.FC<CustomSelectProps> = ({
     text,
     required = false,
     name,
+    value = '',
 }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState<string | null>(null);
+    const [selectedValue, setSelectedValue] = useState<string | null>(value || null);
 
     const [field, meta, helpers] = useField(name);
 

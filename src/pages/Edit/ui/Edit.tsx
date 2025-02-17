@@ -3,10 +3,10 @@ import { Title } from "../../../components/Title"
 import { Form } from "../../../components/Form";
 
 import style from '../../Create/ui/Create.module.scss'
-import { useGetCardIdQuery } from "../model/services/cardIdApi";
-import { useEffect } from "react";
+
 import { useDispatch } from "react-redux";
-import { getCard } from "../model/slice/cardSlice";
+import { useGetCardIdQuery } from "../../Home";
+
 
 
 export const Edit = () => {
@@ -15,11 +15,9 @@ export const Edit = () => {
     const dispatch = useDispatch();
     const { data, isLoading, isError } = useGetCardIdQuery(id || '')
 
-    useEffect(() => {
-        if (data) {
-            dispatch(getCard(data));
-        }
-    }, [data, dispatch]);
+    const onSubmit = (values: any) => {
+        console.log(values);
+    }
 
     if (isLoading) return <p>Загрузка...</p>;
     if (isError) return <p>Ошибка!</p>;
@@ -27,7 +25,11 @@ export const Edit = () => {
     return (
         <>
             <Title>Форма редактирования <Link to="/" className={style.title}>заявки</Link></Title>
-            <Form buttons={{ btn_text_1: 'Сохранить', btn_text_2: 'Отменить' }} />
+            <Form
+                initialValues={data!}
+                onSubmitForm={onSubmit}
+                buttons={{ btn_text_1: 'Сохранить', btn_text_2: 'Отменить' }}
+            />
         </>
     )
 }

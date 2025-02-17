@@ -1,4 +1,5 @@
 export type CardRequestType = {
+    id: string,
     post: string,
     name: string,
     department: string,
@@ -19,3 +20,5 @@ export type CardRequestType = {
     skills: string,
     advantages: string,
 }
+
+export type CardRequestTypeWithoutId = Omit<CardRequestType, 'id'>;

@@ -1,5 +1,5 @@
 import { Edit } from './ui/Edit';
-import { getCard } from './model/slice/cardSlice';
-import { useGetCardIdQuery, cardsIdApi } from './model/services/cardIdApi';
+import { useUpdateCardMutation, updateCardApi } from './model/services/cardUpdateApi';
 
-export { Edit, getCard, useGetCardIdQuery, cardsIdApi };
+
+export { Edit, updateCardApi, useUpdateCardMutation };
