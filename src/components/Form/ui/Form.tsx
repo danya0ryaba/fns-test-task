@@ -29,7 +29,7 @@ export const Form: React.FC<FormType> = ({
     const onSubmit = async (values: typeof initialValues) => {
         onSubmitForm && onSubmitForm(values)
     }
-
+    console.log(initialValues.post)
     return (
         <>
             <Formik
@@ -42,13 +42,13 @@ export const Form: React.FC<FormType> = ({
 
                         <section className={style.form__section}>
                             <div className={style.row}>
-                                <Input text="Наименование должности" name='post' value={initialValues.post} />
-                                <Input text="Наименование вакансии" required name='name' messageError={errors.name && touched.name} value={initialValues.name} />
-                                <Input text="Отдел" required name='department' messageError={errors.department && touched.department} value={initialValues.department} />
+                                <Input text="Наименование должности" name='post' />
+                                <Input text="Наименование вакансии" required name='name' messageError={errors.name && touched.name} />
+                                <Input text="Отдел" required name='department' messageError={errors.department && touched.department} />
                             </div>
                             <div className={style.row}>
-                                <Input value={initialValues.date_open} type='date' text="Дата открытия" required placeholder="Placeholder" name='date_open' messageError={errors.date_open && touched.date_open} />
-                                <Input value={initialValues.date_close} type='date' text="Плановая дата закрытия" required placeholder="Placeholder" name='date_close' messageError={errors.date_close && touched.date_close} />
+                                <Input type='date' text="Дата открытия" required placeholder="Placeholder" name='date_open' messageError={errors.date_open && touched.date_open} />
+                                <Input type='date' text="Плановая дата закрытия" required placeholder="Placeholder" name='date_close' messageError={errors.date_close && touched.date_close} />
                             </div>
                             <div className={style.row}>
 
@@ -81,24 +81,24 @@ export const Form: React.FC<FormType> = ({
                                     <div className={style.inputs}>
                                         <label htmlFor="от" className={style.price_label}>
                                             от
-                                            <Input value={initialValues.from} id="от" className={style.price_input} name='from' />
+                                            <Input id="от" className={style.price_input} name='from' />
                                         </label>
                                         <label htmlFor="до" className={style.price_label} >
                                             до
-                                            <Input value={initialValues.to} id="до" className={style.price_input} name='to' />
+                                            <Input id="до" className={style.price_input} name='to' />
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
                             <div className={style.row}>
-                                <Input value={initialValues.region} text="Регион" required name='region' />
-                                <Input value={initialValues.address} text="Адрес" required className={style.address} name='address' />
-                                <Input value={initialValues.metro} text="Станция метро, МЦД" name='metro' />
+                                <Input text="Регион" required name='region' />
+                                <Input text="Адрес" required className={style.address} name='address' />
+                                <Input text="Станция метро, МЦД" name='metro' />
                             </div>
 
                             <div className={style.row}>
-                                <Input value={initialValues.experience} text="Опыт работы" required name='experience' />
+                                <Input text="Опыт работы" required name='experience' />
                                 <Select
                                     value={initialValues.schedule}
                                     text="График работы"
@@ -121,7 +121,6 @@ export const Form: React.FC<FormType> = ({
                         <section className={style.form__section}>
                             <div className={style.row}>
                                 <InputArea
-                                    value={initialValues.responsibilities}
                                     name='responsibilities'
                                     text="Функциональные обязанности"
                                     placeholder="Какую работу будет выполнять сотрудник"
@@ -129,7 +128,6 @@ export const Form: React.FC<FormType> = ({
                             </div>
                             <div className={style.row}>
                                 <InputArea
-                                    value={initialValues.skills}
                                     name='skills'
                                     text="Пожелания к кандидату"
                                     placeholder="Ключевые навыки, достижения"
@@ -137,7 +135,6 @@ export const Form: React.FC<FormType> = ({
                             </div>
                             <div className={style.row}>
                                 <InputArea
-                                    value={initialValues.advantages}
                                     name='advantages'
                                     text="Преимуществом будет"
                                     placeholder="Дополнительные специальные навыки"

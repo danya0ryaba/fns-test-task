@@ -1,23 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit'
 import cardsSlice from '../pages/Home/model/slice/cardsSlice'
 import { cardsApi } from '../pages/Home/model/services/cardsApi'
-// import cardSlice from '../pages/Edit/model/slice/cardSlice'
 import { createCardApi } from '../pages/Create'
-// import { cardsIdApi } from '../pages/Edit'
+import { updateCardApi } from '../pages/Edit'
 
 export const store = configureStore({
     reducer: {
         cards: cardsSlice,
-        // cardId: cardSlice,
         [cardsApi.reducerPath]: cardsApi.reducer,
-        // [cardsIdApi.reducerPath]: cardsIdApi.reducer,
-        [createCardApi.reducerPath]: createCardApi.reducer
+        [createCardApi.reducerPath]: createCardApi.reducer,
+        [updateCardApi.reducerPath]: updateCardApi.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
         .concat(
             cardsApi.middleware,
-            // cardsIdApi.middleware,
-            createCardApi.middleware
+            createCardApi.middleware,
+            updateCardApi.middleware
         ),
 })
 

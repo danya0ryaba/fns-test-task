@@ -17,7 +17,7 @@ export const Input: React.FC<InputProps> = ({
     required = false,
     ...props
 }) => {
-    const [field, meta] = useField(props.name); // Используйте useField для подключения к Formik
+    const [field, meta] = useField(props.name);
 
     const classError = Boolean(meta.touched && meta.error) ? style.input__error : '';
 
@@ -29,7 +29,7 @@ export const Input: React.FC<InputProps> = ({
                     type={type}
                     id={text}
                     className={`${style.input} ${classError}`}
-                    {...field} // Связываем поле с Formik
+                    {...field}
                     {...props}
                 />
             </div>

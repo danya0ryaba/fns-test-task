@@ -5,6 +5,7 @@ import { Form } from "../../../components/Form"
 
 import style from './Create.module.scss'
 import { useCreateCardMutation } from "../model/services/createCardApi"
+import { initialValues } from "../../../constants/shemaForm"
 
 export const Create = () => {
 
@@ -13,10 +14,14 @@ export const Create = () => {
     const [createCard, { isLoading, isError }] = useCreateCardMutation();
 
     const onSubmit = async (values: any) => {
-        const response = await createCard(values)
-        alert('Заявка создана');
-        console.log(response);
-        router('/');
+        try {
+            await createCard(values);
+            alert('Заявка создана');
+            await router('/');
+        } catch (e) {
+            console.log(e);
+            alert('Заявка не создана. Ошибка!');
+        }
     }
 
     if (isError) return (<p>Ошибка!</p>)
@@ -26,6 +31,7 @@ export const Create = () => {
             <Title>Форма размещения <Link to="/" className={style.title}>заявки</Link></Title>
             {isLoading ? <p>Загрузка...</p> :
                 <Form
+                    initialValues={initialValues}
                     onSubmitForm={onSubmit}
                     buttons={{ btn_text_1: 'Отправить', btn_text_2: 'Сбросить' }}
                 />

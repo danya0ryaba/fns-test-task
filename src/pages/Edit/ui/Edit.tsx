@@ -1,22 +1,33 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { Title } from "../../../components/Title"
 import { Form } from "../../../components/Form";
 
 import style from '../../Create/ui/Create.module.scss'
 
-import { useDispatch } from "react-redux";
 import { useGetCardIdQuery } from "../../Home";
+import { useUpdateCardMutation } from "../model/services/cardUpdateApi";
 
 
 
 export const Edit = () => {
 
     const { id } = useParams()
-    const dispatch = useDispatch();
+    const router = useNavigate();
+
     const { data, isLoading, isError } = useGetCardIdQuery(id || '')
 
-    const onSubmit = (values: any) => {
-        console.log(values);
+    const [updateCard, { isError: isErrorUpdateCard }] = useUpdateCardMutation();
+
+    const onSubmit = async (body: any) => {
+        try {
+            const response = await updateCard({ id: id || '', body });
+            console.log(response);
+            alert('Заявка отредактирована');
+            router('/');
+        } catch (e) {
+            console.log("маслину словил");
+            console.log(isErrorUpdateCard);
+        }
     }
 
     if (isLoading) return <p>Загрузка...</p>;
