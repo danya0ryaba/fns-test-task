@@ -9,6 +9,7 @@ import { Select } from '../../../shared/Select'
 import { userSchema } from '../../../constants/shemaForm'
 
 import style from './Form.module.scss'
+import { useCreateCardMutation } from '../../../pages/Create'
 
 type FormType = {
     buttons: {
@@ -24,7 +25,7 @@ const initialValues = {
     date_open: '',
     date_close: '',
     sex: '', //['Мужской', 'Женский'],
-    education: '', //['Высшее', 'Среднее'], // по логике по умолчанию должна быть пустая строка 
+    education: '', //['Высшее', 'Среднее'],
     salary: '', // ['На руки', 'До вычета налогов'],
     from: '',
     to: '',
@@ -43,9 +44,11 @@ export const Form: React.FC<FormType> = ({
     buttons,
 }) => {
 
-    const onSubmit = (values: typeof initialValues) => {
-        console.log('попал в обработчик')
-        console.log(values)
+    const [createCard, { isLoading, isError }] = useCreateCardMutation();
+
+    const onSubmit = async (values: typeof initialValues) => {
+        const response = await createCard(values)
+        console.log('дописать + сделать общий url')
     }
 
     return (

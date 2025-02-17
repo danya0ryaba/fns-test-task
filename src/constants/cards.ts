@@ -1,39 +1,31 @@
-export type CardType = {
-    id: number
-    date: string
-    job: string
-    map: string
-    salary: string
-    experience: string
-    metro: string
-}
+import { CardType } from "../pages/Home/model/types/cardsType";
 
-export const cards: CardType[] = [
+export const cards2: CardType[] = [
     {
-        id: 1,
-        date: 'Дата публикации: 23.01.2023',
-        job: 'Backend-разработчик',
-        map: 'Москва, Походный проезд, 3с1',
-        salary: 'от 70 000',
-        experience: 'от 1 до 3 лет',
-        metro: 'Сходненская, Трикотажная и Волоколамская',
+        "id": 1,
+        "date": 'Дата публикации: 23.01.2023',
+        "job": 'Backend-разработчик',
+        "map": 'Москва, Походный проезд, 3с1',
+        "salary": 'от 170 000',
+        "experience": 'от 2 до 5 лет',
+        "metro": 'Сходненская, Трикотажная и Волоколамская',
     },
     {
-        id: 2,
-        date: 'Дата публикации: 23.01.2023',
-        job: 'Backend-разработчик',
-        map: 'Москва, Походный проезд, 3с1',
-        salary: 'от 70 000',
-        experience: 'от 1 до 3 лет',
-        metro: 'Сходненская, Трикотажная и Волоколамская',
+        "id": 2,
+        "date": 'Дата публикации: 20.01.2025',
+        "job": 'Frontend-разработчик',
+        "map": 'Екатеринбург, Кузнецова, 3с1',
+        "salary": 'от 75 000',
+        "experience": 'от 1 до 3 лет',
+        "metro": 'Волоколамская',
     },
     {
-        id: 3,
-        date: 'Дата публикации: 23.01.2023',
-        job: 'Backend-разработчик',
-        map: 'Москва, Походный проезд, 3с1',
-        salary: 'от 70 000',
-        experience: 'от 1 до 3 лет',
-        metro: 'Сходненская, Трикотажная и Волоколамская',
+        "id": 3,
+        "date": 'Дата публикации: 13.01.2024',
+        "job": 'Backend-разработчик',
+        "map": 'Москва, Студенческая, 33',
+        "salary": 'от 90 000',
+        "experience": 'от 1 до 3 лет',
+        "metro": 'Студенческая, Трикотажная и Волоколамская',
     },
 ]
