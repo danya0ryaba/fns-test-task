@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useField } from 'formik';
 
+import Arrow from '../../../assets/icons/select-arrow.svg';
+
 import style from './Select.module.scss';
 
 interface CustomSelectProps {
@@ -59,14 +61,7 @@ export const Select: React.FC<CustomSelectProps> = ({
             <label className={style.input__label} htmlFor={text}>{text} {required && <span className={style.required}>*</span>}</label>
             <div className={`${style.select} ${isOpen && style.open} ${classError}`} onClick={toggleSelect}>
                 {selectedValue || placeholder}
-                <svg
-                    className={style.select__arrow}
-                    style={{ transform: rotate }}
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.75 7.29138L9.75 12.7086L18.25 7.29138" stroke="#4C73E3" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round" />
-                </svg>
+                <Arrow width="20" height="20" className={style.select__arrow} style={{ transform: rotate }} />
             </div>
             {isOpen && (
                 <ul className={style.select__options}>

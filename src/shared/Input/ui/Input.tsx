@@ -19,10 +19,8 @@ export const Input: React.FC<InputProps> = ({
     ...props
 }) => {
     const [field, meta] = useField(props.name);
-
     const classError = Boolean(meta.touched && meta.error) ? style.input__error : '';
     const classDate = type === 'date' ? style.input__date : '';
-
     const refDate = useRef<null | HTMLInputElement>(null);
 
     const onFocusDate = () => {
